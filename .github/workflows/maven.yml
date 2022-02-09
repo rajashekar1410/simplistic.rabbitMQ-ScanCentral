@@ -53,6 +53,11 @@ jobs:
     # Update BUILD_OPTS based on the ScanCentral Client documentation and your project's included tech stack(s).
     #   ScanCentral Client will download dependencies for maven, gradle and msbuild projects.
     #   For other build tools, add your build commands to the workflow to download necessary dependencies and prepare according to Fortify SCA documentation.
+    - name: Setting FQDN address
+      run: |
+            export RUNNER_ALLOW_RUNASROOT="1"
+            export AGENT_ALLOW_RUNASROOT="1"
+            sudo echo "3.80.165.212 fortify.cyberxdemo.com" | sudo tee -a /etc/hosts
     - name: Perform SAST Scan
       run: scancentral -url ${SC_CONTROLLER_URL} start $BUILD_OPTS -upload -application $APPLICATION -version $VERSION -uptoken $SSC_UPLOAD_TOKEN
       env:                                            
