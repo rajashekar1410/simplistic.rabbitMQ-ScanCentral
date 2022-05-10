@@ -83,5 +83,3 @@ jobs:
     - uses: github/codeql-action/upload-sarif@v1
       with:
         sarif_file: ./gh-fortify-sast.sarif
-# Optonally store the generated file for troubleshooting purposes.
-    - uses: actions/upload-artifact@v2
